@@ -1,6 +1,5 @@
 import React from "react";
-import HeaderImg from '../assets/temp_prptHeader.png'
-import "../css/FAQ.css"; // Import styles
+import "../css/FAQ.css";
 
 const FAQHeader: React.FC<{ title: string }> = ({ title }) => {
   return (

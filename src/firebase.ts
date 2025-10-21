@@ -19,5 +19,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+getAnalytics(app);
 export const rtdb = getDatabase(app, "https://dmdc-freelance-default-rtdb.firebaseio.com/");

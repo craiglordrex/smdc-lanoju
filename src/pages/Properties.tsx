@@ -1,9 +1,8 @@
 import '.././App.css'
 import PropertiesHeader from '../sections/PropertiesHeader'
-import Crumbs from '../components/Crumbs' // Adjust the path as necessary
+import Crumbs from '../components/Crumbs'
 import PropertiesBody from '../sections/PropertiesBody'
-import '.././css/Properties.css' // Adjust the path as necessary
-import Footer from '../components/Footer'
+import '.././css/Properties.css'
 import HeaderImg from '../assets/temp_prptHeader.png'
 
 
