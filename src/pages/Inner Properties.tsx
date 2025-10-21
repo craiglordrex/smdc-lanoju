@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import { rtdb } from "../firebase";
@@ -11,18 +11,6 @@ import NearbyEstablishments from "../sections/NearbyEstablishments";
 import FAQs from "../sections/Faqs";
 import FeaturedProp from "../sections/FeaturedProperties";
 import ".././App.css";
-
-const images = [
-  "/assets/gallery/bloom.png",
-  "/assets/gallery/park.png",
-  "/assets/gallery/bloom.png",
-  "/assets/gallery/park.png",
-  "/assets/gallery/bloom.png",
-  "/assets/gallery/park.png",
-  "/assets/gallery/bloom.png",
-  "/assets/gallery/park.png",
-  "/assets/gallery/bloom.png",
-];
 
 function InnerProperties() {
   const { id } = useParams();

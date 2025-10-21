@@ -1,10 +1,8 @@
 import '.././App.css'
 import Crumbs from '../components/Crumbs';
-import Footer from '../components/Footer';
 import PropertiesHeader from '../sections/PropertiesHeader';
 import HeaderImg from '../assets/temp_prptHeader.png'
 import ArticlesBody from '../sections/ArticlesBody'
-import LatestNews from '../sections/LatestNews';
 
 function Articles() {
   return (

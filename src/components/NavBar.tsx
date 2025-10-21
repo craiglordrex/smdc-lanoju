@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import temp_logo from "../assets/temp_logo.png";

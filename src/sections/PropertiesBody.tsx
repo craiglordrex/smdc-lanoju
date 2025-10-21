@@ -21,13 +21,6 @@ function PropertiesBody() {
     // Add search query state - moved to the top with other state declarations
     const [searchQuery, setSearchQuery] = useState<string>('');
 
-    // Helper to find closest value in dynamicPrices
-    const findClosestValue = (value: number) => {
-        return dynamicPrices.reduce((prev, curr) =>
-            Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
-        );
-    };
-
     // State for location section collapse
     const [isLocationCollapsed, setIsLocationCollapsed] = useState(false);
 
@@ -249,7 +242,7 @@ function PropertiesBody() {
             // Get prices from all property units
             properties.forEach(property => {
                 if (property.unit) {
-                    Object.entries(property.unit).forEach(([unitKey, unitData]: [string, any]) => {
+                    Object.entries(property.unit).forEach(([, unitData]: [string, any]) => {
                         if (unitData && typeof unitData.price === 'number') {
                             allPrices.push(unitData.price);
                         }

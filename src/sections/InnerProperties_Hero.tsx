@@ -82,7 +82,7 @@ function InnerProp_Hero({
             
             {highlights.length > 0 && (
               <div className="highlights-cont">
-                {highlights.map((h, idx) => (
+                {highlights.map((h) => (
                   <div className="highlight" key={h.key}>
                     {h.svg}
                     <p>{h.content}</p>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Range, getTrackBackground } from 'react-range';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { rtdb } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import '../css/Filter.css'
@@ -29,7 +29,6 @@ function Filter() {
 
   const [isUnitTypeOpen, setIsUnitTypeOpen] = useState(false);
   const [isLocationOpen, setIsLocationOpen] = useState(false);
-  const [isPropertyTypeOpen, setIsPropertyTypeOpen] = useState(false);
 
   // Refs for dropdowns
   const unitTypeRef = useRef<HTMLDivElement>(null);
@@ -150,14 +149,6 @@ function Filter() {
     };
   }, []);
 
-  const fixedPrices = [1000000, 3000000, 5000000, 10000000, 15000000, 30000000];
-
-  const findClosestValue = (value: number) => {
-    return dynamicPrices.reduce((prev, curr) =>
-      Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
-    );
-  };
-
   const handleMultiSelectChange = (
     field: keyof SearchFilters,
     selected: string,
@@ -194,27 +185,8 @@ function Filter() {
     return selectedOptions.join(", ");
   };
 
-  const handleCheckboxChange = (field: keyof SearchFilters) => {
-    setFilters((prev) => ({
-      ...prev,
-      [field]: !prev[field],
-    }));
-  };
-
-  const handleSliderChange = (values: number[]) => {
-    const snappedValues: [number, number] = [
-      findClosestValue(values[0]),
-      findClosestValue(values[1]),
-    ];
-    setFilters((prev) => ({
-      ...prev,
-      priceRange: snappedValues,
-    }));
-  };
-
   // --- REDIRECT ON SEARCH ---
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleSearch = () => {
     // Build query string from filters
@@ -243,7 +215,6 @@ function Filter() {
                   setIsUnitTypeOpen((open) => {
                     if (!open) {
                       setIsLocationOpen(false);
-                      setIsPropertyTypeOpen(false);
                     }
                     return !open;
                   });
@@ -310,7 +281,6 @@ function Filter() {
                   setIsLocationOpen((open) => {
                     if (!open) {
                       setIsUnitTypeOpen(false);
-                      setIsPropertyTypeOpen(false);
                     }
                     return !open;
                   });
@@ -439,12 +409,12 @@ function Filter() {
                       position: 'relative',
                     }}
                   >
-                    {dynamicPrices.map((value, index) => (
+                    {dynamicPrices.map((value) => (
                       <div
-                        key={index}
+                        key={value}
                         style={{
                           position: 'absolute',
-                          left: `${(index / (dynamicPrices.length - 1)) * 100}%`,
+                          left: `${(dynamicPrices.indexOf(value) / (dynamicPrices.length - 1)) * 100}%`,
                           top: '0',
                           height: '18px',
                           width: '0.5px',
@@ -474,7 +444,7 @@ function Filter() {
                     {children}
                   </div>
                 )}
-                renderThumb={({ props, index, isDragged }) => (
+                renderThumb={({ props, isDragged }) => (
                   <div
                     {...props}
                     style={{
